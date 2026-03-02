@@ -1,0 +1,45 @@
+class Producto:
+    def __init__(self, nombre, precio, cantidad):
+        self.nombre = nombre
+        self.precio = precio
+        self.cantidad = cantidad
+
+    def vender(self, cantidad_vendida):
+        if cantidad_vendida <= self.cantidad:
+            self.cantidad -= cantidad_vendida
+            total = cantidad_vendida * self.precio
+            print(f"✅ Venta exitosa: {cantidad_vendida}x '{self.nombre}'. Total: {total}€")
+        else:
+            print(f"❌ Error: No hay suficiente stock de '{self.nombre}'. Quedan {self.cantidad} unidades.")
+
+class InventarioLLIG:
+    def __init__(self):
+        self.productos = {}
+
+    def agregar_producto(self, codigo, nombre, precio, cantidad):
+        self.productos[codigo] = Producto(nombre, precio, cantidad)
+        print(f"Producto '{nombre}' añadido al inventario.")
+
+    def mostrar_inventario(self):
+        print("\n--- INVENTARIO LLIG LLIBRERIA ---")
+        for codigo, prod in self.productos.items():
+            print(f"[{codigo}] {prod.nombre} - Precio: {prod.precio}€ - Stock: {prod.cantidad}")
+        print("---------------------------------\n")
+
+# --- Uso del sistema ---
+mi_papeleria = InventarioLLIG()
+
+# Añadir algunos productos
+mi_papeleria.agregar_producto("001", "Cuaderno A4 Cuadrícula", 2.50, 50)
+mi_papeleria.agregar_producto("002", "Bolígrafo BIC Azul", 1.00, 100)
+mi_papeleria.agregar_producto("003", "Libro: El Quijote", 15.95, 5)
+
+# Ver qué tenemos
+mi_papeleria.mostrar_inventario()
+
+# Hacer una venta
+mi_papeleria.productos["001"].vender(3)
+mi_papeleria.productos["003"].vender(6) # Esto dará error por falta de stock
+
+# Ver el inventario actualizado
+mi_papeleria.mostrar_inventario()
