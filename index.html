@@ -1,45 +1,106 @@
-class Producto:
-    def __init__(self, nombre, precio, cantidad):
-        self.nombre = nombre
-        self.precio = precio
-        self.cantidad = cantidad
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LLIG Llibreria - Papelería y Libros</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+        header {
+            background-color: #2c3e50;
+            color: #ffffff;
+            padding: 2rem 0;
+            text-align: center;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+            letter-spacing: 2px;
+        }
+        nav {
+            background-color: #34495e;
+            display: flex;
+            justify-content: center;
+            padding: 1rem;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: bold;
+        }
+        nav a:hover {
+            color: #f1c40f;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+        .services {
+            display: flex;
+            gap: 20px;
+            margin-top: 2rem;
+        }
+        .card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            flex: 1;
+            text-align: center;
+        }
+        footer {
+            background-color: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 1rem 0;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
 
-    def vender(self, cantidad_vendida):
-        if cantidad_vendida <= self.cantidad:
-            self.cantidad -= cantidad_vendida
-            total = cantidad_vendida * self.precio
-            print(f"✅ Venta exitosa: {cantidad_vendida}x '{self.nombre}'. Total: {total}€")
-        else:
-            print(f"❌ Error: No hay suficiente stock de '{self.nombre}'. Quedan {self.cantidad} unidades.")
+    <header>
+        <h1>LLIG Llibreria</h1>
+        <p>Tu espacio de lectura y material escolar</p>
+    </header>
 
-class InventarioLLIG:
-    def __init__(self):
-        self.productos = {}
+    <nav>
+        <a href="#inicio">Inicio</a>
+        <a href="#servicios">Nuestros Productos</a>
+        <a href="#contacto">Contacto</a>
+    </nav>
 
-    def agregar_producto(self, codigo, nombre, precio, cantidad):
-        self.productos[codigo] = Producto(nombre, precio, cantidad)
-        print(f"Producto '{nombre}' añadido al inventario.")
+    <div class="container">
+        <section id="inicio">
+            <h2>Bienvenidos a LLIG</h2>
+            <p>Encuentra los mejores títulos, material de oficina y escolar al mejor precio. Estamos aquí para inspirar tus ideas y acompañar tus lecturas.</p>
+        </section>
 
-    def mostrar_inventario(self):
-        print("\n--- INVENTARIO LLIG LLIBRERIA ---")
-        for codigo, prod in self.productos.items():
-            print(f"[{codigo}] {prod.nombre} - Precio: {prod.precio}€ - Stock: {prod.cantidad}")
-        print("---------------------------------\n")
+        <section id="servicios" class="services">
+            <div class="card">
+                <h3>📚 Librería</h3>
+                <p>Novedades, clásicos, literatura infantil y juvenil.</p>
+            </div>
+            <div class="card">
+                <h3>✏️ Papelería</h3>
+                <p>Cuadernos, bolígrafos, mochilas y material técnico.</p>
+            </div>
+            <div class="card">
+                <h3>🖨️ Servicios</h3>
+                <p>Fotocopias, encuadernaciones y plastificados.</p>
+            </div>
+        </section>
+    </div>
 
-# --- Uso del sistema ---
-mi_papeleria = InventarioLLIG()
-
-# Añadir algunos productos
-mi_papeleria.agregar_producto("001", "Cuaderno A4 Cuadrícula", 2.50, 50)
-mi_papeleria.agregar_producto("002", "Bolígrafo BIC Azul", 1.00, 100)
-mi_papeleria.agregar_producto("003", "Libro: El Quijote", 15.95, 5)
-
-# Ver qué tenemos
-mi_papeleria.mostrar_inventario()
-
-# Hacer una venta
-mi_papeleria.productos["001"].vender(3)
-mi_papeleria.productos["003"].vender(6) # Esto dará error por falta de stock
-
-# Ver el inventario actualizado
-mi_papeleria.mostrar_inventario()
+</body>
+</html>
